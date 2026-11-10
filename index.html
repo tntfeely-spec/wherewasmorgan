@@ -24,6 +24,9 @@
     --tert: #E4E6EB;
     --avatar: #E4E6EB;
     --shadow: 0 1px 2px rgba(0,0,0,.2);
+    --bg-image: none;
+    --tint: rgba(0, 0, 0, 0);
+    --veil: var(--chat);
     --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   }
   @media (prefers-color-scheme: dark) {
@@ -39,6 +42,8 @@
       --tert: #3A3B3C;
       --avatar: #4E4F50;
       --shadow: 0 1px 2px rgba(0,0,0,.5);
+      --veil: var(--chat);
+      --tint: rgba(0, 0, 0, 0);
     }
   }
   *, *::before, *::after { box-sizing: border-box; }
@@ -47,7 +52,8 @@
   a { color: var(--link); }
   :focus-visible { outline: 3px solid var(--link); outline-offset: 2px; border-radius: 6px; }
 
-  .chat { max-width: 600px; margin: 0 auto; min-height: 70vh; background: var(--chat); border-left: 1px solid var(--line); border-right: 1px solid var(--line); display: flex; flex-direction: column; }
+  body::before { content: ""; position: fixed; inset: 0; z-index: -1; background: linear-gradient(var(--tint), var(--tint)), var(--bg-image) center / cover no-repeat; }
+  .chat { max-width: 720px; margin: 0 auto; min-height: 70vh; background: var(--veil); border-left: 1px solid var(--line); border-right: 1px solid var(--line); display: flex; flex-direction: column; }
 
   .thread { flex: 1; padding: 8px 14px 24px; }
 
@@ -150,6 +156,54 @@
     .foot-brand { grid-column: 1 / -1; }
   }
 
+  /* Profile picture on every avatar. Swap images/avatar.png to change it everywhere. */
+  .avatar { background-color: var(--avatar); background-image: url(images/avatar.png); background-size: cover; background-position: center; background-color: #FFFFFF; color: transparent; font-size: 0; }
+
+  /* Menu icons, shown in the desktop sidebar */
+  .ico { display: none; width: 36px; height: 36px; border-radius: 50%; background: #E7F3FF; color: #0866FF; align-items: center; justify-content: center; flex: none; }
+  .ico svg { width: 20px; height: 20px; fill: currentColor; }
+  @media (prefers-color-scheme: dark) { .ico { background: #263951; color: #2D88FF; } }
+
+  /* Facebook's three columns: menu down the left, conversation in the middle, footer down the right. */
+  @media (min-width: 1000px) {
+    html { scroll-padding-top: 16px; }
+    header.site { position: fixed; top: 0; left: 0; bottom: 0; width: 240px; background: transparent; border: 0; box-shadow: none; overflow-y: auto; padding: 14px 10px; z-index: 30; }
+    .site-in { flex-direction: column; align-items: stretch; gap: 4px; padding: 0; min-height: 0; max-width: none; }
+    .site-brand { padding: 8px 10px; margin-bottom: 8px; font-size: 1.1rem; white-space: nowrap; }
+    nav.menu { flex-direction: column; align-items: stretch; margin-left: 0; gap: 2px; }
+    nav.menu a { height: 52px; padding: 0 10px; gap: 12px; color: var(--text); border-bottom: 0; border-radius: 8px; font-size: 1rem; }
+    nav.menu a.active { background: var(--tert); color: var(--text); border-bottom: 0; }
+    nav.menu .ico { display: flex; }
+    .cta { margin: 14px 10px 0; text-align: center; padding: 11px 16px; }
+    footer.site { position: fixed; top: 0; right: 0; bottom: 0; width: 260px; background: transparent; border: 0; overflow-y: auto; z-index: 30; }
+    .foot-in { padding: 20px 14px 18px; display: flex; flex-direction: column; min-height: 100%; max-width: none; margin: 0; }
+    .foot-cols { grid-template-columns: 1fr; gap: 22px; }
+    .foot-explore { display: none; }
+    .foot-cols li a { display: block; padding: 8px 10px; margin: 0 -10px; border-radius: 8px; }
+    .foot-cols li a:hover { background: var(--tert); text-decoration: none; }
+    .foot-bottom { margin-top: auto; padding-top: 14px; flex-direction: column; gap: 6px; }
+    .chat { width: min(720px, calc(100vw - 540px)); max-width: none; margin: 12px auto; border: 1px solid var(--line); border-radius: 12px; overflow: clip; min-height: calc(100vh - 24px); }
+  }
+  @media (min-width: 1360px) {
+    header.site { width: 280px; }
+    footer.site { width: 300px; }
+    .chat { width: 720px; }
+  }
+
+  /* Middle widths: Facebook's slim icon rail down the left. The footer stays at the bottom. */
+  @media (min-width: 761px) and (max-width: 999px) {
+    body { padding-left: 72px; }
+    header.site { position: fixed; top: 0; left: 0; bottom: 0; width: 72px; background: var(--chat); border: 0; border-right: 1px solid var(--line); box-shadow: none; z-index: 30; padding: 12px 0; overflow-y: auto; }
+    .site-in { flex-direction: column; align-items: center; gap: 6px; padding: 0; min-height: 0; max-width: none; }
+    .site-brand { font-size: 0; padding: 4px; margin-bottom: 6px; }
+    nav.menu { flex-direction: column; align-items: center; margin-left: 0; gap: 6px; width: 100%; }
+    nav.menu a { height: 48px; width: 48px; padding: 0; justify-content: center; font-size: 0; gap: 0; border-bottom: 0; border-radius: 12px; }
+    nav.menu a.active { background: var(--tert); border-bottom: 0; }
+    nav.menu .ico { display: flex; }
+    .cta { display: none; }
+    .chat { margin: 12px auto; max-width: 720px; border: 1px solid var(--line); border-radius: 12px; overflow: clip; }
+  }
+
   @media (max-width: 640px) {
     .chat { border-left: 0; border-right: 0; }
     .thread { padding: 4px 10px 20px; }
@@ -164,11 +218,11 @@
   <div class="site-in">
     <a class="site-brand" href="#top"><span class="avatar" aria-hidden="true">W</span>Where Was Morgan?</a>
     <nav class="menu" aria-label="Main">
-      <a href="#top">Home</a>
-      <a href="#status">Case status</a>
-      <a href="#coverage">Trial coverage</a>
-      <a href="#podcast">Podcast</a>
-      <a href="#contact">Contact</a>
+      <a href="#top"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3 3 10.5V21h6v-6h6v6h6V10.5L12 3z"/></svg></span>Home</a>
+      <a href="#status"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 2h6a1 1 0 0 1 1 1v1h3a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h3V3a1 1 0 0 1 1-1zm0 2v2h6V4H9zm2.2 11.6-2.4-2.4-1.4 1.4 3.8 3.8 6-6-1.4-1.4-4.6 4.6z"/></svg></span>Case status</a>
+      <a href="#coverage"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 5h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2zm6 3.5v7l6-3.5-6-3.5z"/></svg></span>Trial coverage</a>
+      <a href="#podcast"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 15a3 3 0 0 0 3-3V6a3 3 0 0 0-6 0v6a3 3 0 0 0 3 3zm5-3a1 1 0 1 1 2 0 7 7 0 0 1-6 6.92V21h-2v-2.08A7 7 0 0 1 5 12a1 1 0 1 1 2 0 5 5 0 0 0 10 0z"/></svg></span>Podcast</a>
+      <a href="#contact"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg></span>Contact</a>
     </nav>
     <a class="cta" href="https://podcasts.apple.com/ie/podcast/where-was-morgan/id1749517343" rel="noopener">Listen</a>
   </div>
@@ -315,7 +369,7 @@
           <p>The Morgan Bauer podcast and case update.</p>
         </div>
       </div>
-      <div>
+      <div class="foot-explore">
         <h2>Explore</h2>
         <ul>
           <li><a href="#top">Home</a></li>
@@ -330,6 +384,12 @@
         <ul>
           <li><a href="https://podcasts.apple.com/ie/podcast/where-was-morgan/id1749517343" rel="noopener">Apple Podcasts</a></li>
           <li><a href="https://open.spotify.com/show/4AUhRyNwRygzVNcFYw5JCp" rel="noopener">Spotify</a></li>
+        </ul>
+      </div>
+      <div class="foot-contact">
+        <h2>Contact</h2>
+        <ul>
+          <li><a href="mailto:contact@wherewasmorgan.com">contact@wherewasmorgan.com</a></li>
         </ul>
       </div>
     </div>
