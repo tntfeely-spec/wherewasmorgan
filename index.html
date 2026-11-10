@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>Where Was Morgan? Case status and podcast</title>
+<meta name="description" content="Morgan Bauer left Aberdeen, South Dakota on February 12, 2016. She was 19. Where the case stands, the trial coverage, and the podcast.">
+<meta property="og:title" content="Where Was Morgan?">
+<meta property="og:description" content="Where the case stands, the trial coverage, and the podcast about Morgan Bauer.">
+<meta property="og:type" content="website">
+<style>
+  /* The whole page is one Facebook Messenger conversation. Facebook's colors and system font, light and dark themes. */
+  :root {
+    --bg: #F0F2F5;
+    --chat: #FFFFFF;
+    --text: #050505;
+    --sub: #65676B;
+    --line: #CED0D4;
+    --link: #0866FF;
+    --blue: #0084FF;
+    --msg-in: #E4E6EB;
+    --msg-in-text: #050505;
+    --tert: #E4E6EB;
+    --avatar: #E4E6EB;
+    --shadow: 0 1px 2px rgba(0,0,0,.2);
+    --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #18191A;
+      --chat: #242526;
+      --text: #E4E6EB;
+      --sub: #B0B3B8;
+      --line: #3E4042;
+      --link: #2D88FF;
+      --msg-in: #3A3B3C;
+      --msg-in-text: #E4E6EB;
+      --tert: #3A3B3C;
+      --avatar: #4E4F50;
+      --shadow: 0 1px 2px rgba(0,0,0,.5);
+    }
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 76px; }
+  body { margin: 0; background: var(--bg); color: var(--text); font-family: var(--font); font-size: 1rem; line-height: 1.4; -webkit-font-smoothing: antialiased; }
+  a { color: var(--link); }
+  :focus-visible { outline: 3px solid var(--link); outline-offset: 2px; border-radius: 6px; }
+
+  .chat { max-width: 600px; margin: 0 auto; min-height: 70vh; background: var(--chat); border-left: 1px solid var(--line); border-right: 1px solid var(--line); display: flex; flex-direction: column; }
+
+  .thread { flex: 1; padding: 8px 14px 24px; }
+
+  /* Conversation intro, as at the top of every Messenger chat */
+  .intro { text-align: center; padding: 34px 10px 12px; }
+  .intro .avatar { width: 76px; height: 76px; font-size: 1.9rem; margin: 0 auto 12px; }
+  .intro h1 { margin: 0; font-size: 1.5rem; font-weight: 700; letter-spacing: -0.01em; }
+  .intro p { margin: 4px 0 0; font-size: .9rem; color: var(--sub); }
+
+  .avatar { border-radius: 50%; background: var(--avatar); color: var(--text); display: flex; align-items: center; justify-content: center; font-weight: 700; flex: none; }
+  .stamp { text-align: center; font-size: .78rem; font-weight: 600; color: var(--sub); margin: 20px 0 10px; }
+  /* Section headers: same size and weight as the page title */
+  .section-title { text-align: center; font-size: 1.5rem; font-weight: 700; letter-spacing: -0.01em; line-height: 1.2; color: var(--text); margin: 40px 0 16px; }
+  .system { text-align: center; font-size: .8rem; color: var(--sub); margin: 12px auto 0; max-width: 28rem; }
+
+  /* Incoming message groups: avatar beside the last bubble, joined corners */
+  .group { display: flex; align-items: flex-end; gap: 8px; margin-top: 10px; }
+  .group .avatar { width: 28px; height: 28px; font-size: .75rem; }
+  .col { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; min-width: 0; max-width: calc(100% - 36px); }
+  .msg { background: var(--msg-in); color: var(--msg-in-text); padding: 8px 12px; border-radius: 18px; font-size: 1rem; line-height: 1.35; overflow-wrap: anywhere; }
+  .col > :not(:first-child) { border-top-left-radius: 4px; }
+  .col > :not(:last-child) { border-bottom-left-radius: 4px; }
+  .msg.big { font-size: 1.1rem; padding: 10px 14px; }
+  .msg.bold { font-weight: 700; }
+
+  /* Quick replies, used as the page's navigation */
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin: 16px 0 6px; }
+  .chip { display: inline-block; border: 1px solid var(--link); color: var(--link); background: transparent; text-decoration: none; font-weight: 600; font-size: .92rem; padding: 7px 14px; border-radius: 18px; }
+  .chip:hover { background: var(--tert); }
+  .chip.solid { background: var(--blue); border-color: var(--blue); color: #fff; }
+  .chip.solid:hover { filter: brightness(.92); }
+
+  /* Link previews inside bubbles */
+  .preview { display: block; background: var(--msg-in); color: var(--msg-in-text); text-decoration: none; border-radius: 18px; padding: 10px 14px 12px; min-width: 240px; }
+  .preview b { display: block; font-size: 1.02rem; }
+  .preview small { display: block; color: var(--sub); font-size: .82rem; margin-top: 2px; }
+  .preview:hover b { text-decoration: underline; }
+
+  /* Episodes as voice messages */
+  .voice { display: flex; gap: 12px; align-items: flex-start; background: var(--msg-in); color: var(--msg-in-text); text-decoration: none; border-radius: 18px; padding: 12px 14px 14px; }
+  .voice:hover .vtext b { text-decoration: underline; }
+  .voice .play { width: 38px; height: 38px; border-radius: 50%; background: var(--blue); flex: none; position: relative; margin-top: 2px; }
+  .voice .play::after { content: ""; position: absolute; left: 15px; top: 11px; border-left: 12px solid #fff; border-top: 8px solid transparent; border-bottom: 8px solid transparent; }
+  .vtext { min-width: 0; }
+  .vtext b { display: block; font-size: 1rem; line-height: 1.3; }
+  .bars { display: flex; align-items: center; gap: 2px; height: 22px; margin: 6px 0 4px; }
+  .bars i { display: block; width: 3px; height: var(--h); border-radius: 2px; background: var(--sub); opacity: .7; }
+  .vdesc { display: block; color: var(--sub); font-size: .88rem; line-height: 1.4; }
+
+  /* More episodes coming soon: typing indicator */
+  .typing { display: inline-flex; gap: 5px; align-items: center; padding: 14px 16px; }
+  .typing i { width: 8px; height: 8px; border-radius: 50%; background: var(--sub); display: block; animation: blink 1.3s infinite; }
+  .typing i:nth-child(2) { animation-delay: .2s; }
+  .typing i:nth-child(3) { animation-delay: .4s; }
+  @keyframes blink { 0%, 60%, 100% { opacity: .3; } 30% { opacity: 1; } }
+
+  /* Messenger's bottom row. Decorative only. */
+  .composer { position: sticky; bottom: 0; display: flex; align-items: center; gap: 12px; padding: 10px 14px; border-top: 1px solid var(--line); background: var(--chat); color: var(--blue); pointer-events: none; user-select: none; }
+  .composer svg { width: 22px; height: 22px; fill: currentColor; flex: none; }
+  .composer .gif { font-size: .62rem; font-weight: 800; border: 2px solid currentColor; border-radius: 5px; padding: 0 3px; line-height: 1.15; flex: none; }
+  .composer .field { flex: 1; display: flex; justify-content: space-between; align-items: center; background: var(--tert); color: var(--sub); border-radius: 20px; padding: 7px 12px; font-size: .95rem; }
+  .composer .field svg { width: 20px; height: 20px; }
+
+  /* Site header: brand, menu, Listen button. Facebook's tab-bar style, with a blue line under the active tab. */
+  header.site { position: sticky; top: 0; z-index: 30; background: var(--chat); border-bottom: 1px solid var(--line); box-shadow: var(--shadow); }
+  .site-in { max-width: 1100px; margin: 0 auto; padding: 0 16px; display: flex; align-items: center; gap: 16px; min-height: 56px; }
+  .site-brand { display: flex; align-items: center; gap: 10px; color: var(--text); text-decoration: none; font-weight: 700; font-size: 1.25rem; letter-spacing: -0.02em; }
+  .site-brand .avatar { width: 36px; height: 36px; font-size: 1rem; }
+  nav.menu { display: flex; align-items: stretch; gap: 2px; margin-left: auto; }
+  nav.menu a { display: flex; align-items: center; padding: 0 14px; height: 56px; color: var(--sub); text-decoration: none; font-weight: 600; font-size: .95rem; border-bottom: 3px solid transparent; border-radius: 8px 8px 0 0; }
+  nav.menu a:hover { background: var(--tert); }
+  nav.menu a.active { color: var(--link); border-bottom-color: var(--link); }
+  .cta { background: var(--blue); color: #fff; text-decoration: none; font-weight: 600; font-size: .92rem; padding: 8px 16px; border-radius: 6px; white-space: nowrap; }
+  .cta:hover { filter: brightness(.92); }
+
+  /* Site footer */
+  footer.site { background: var(--chat); border-top: 1px solid var(--line); color: var(--sub); font-size: .9rem; }
+  .foot-in { max-width: 1100px; margin: 0 auto; padding: 36px 16px 26px; }
+  .foot-cols { display: grid; grid-template-columns: 1.6fr 1fr 1fr; gap: 32px; }
+  .foot-brand { display: flex; gap: 10px; align-items: flex-start; }
+  .foot-brand .avatar { width: 36px; height: 36px; font-size: 1rem; }
+  .foot-brand strong { display: block; color: var(--text); font-size: 1.05rem; letter-spacing: -0.01em; }
+  .foot-brand p { margin: 4px 0 0; max-width: 22rem; line-height: 1.45; }
+  .foot-cols h2 { font-size: .85rem; font-weight: 700; color: var(--text); margin: 0 0 10px; }
+  .foot-cols ul { list-style: none; margin: 0; padding: 0; }
+  .foot-cols li { margin-bottom: 8px; }
+  .foot-cols a, .foot-bottom a { color: var(--sub); text-decoration: none; }
+  .foot-cols a:hover, .foot-bottom a:hover { text-decoration: underline; color: var(--text); }
+  .foot-bottom { border-top: 1px solid var(--line); margin-top: 28px; padding-top: 18px; display: flex; flex-wrap: wrap; gap: 8px 24px; justify-content: space-between; font-size: .82rem; }
+  .foot-bottom p { margin: 0; }
+  .foot-bottom .legal { flex-basis: 100%; line-height: 1.45; }
+
+  @media (max-width: 760px) {
+    html { scroll-padding-top: 118px; }
+    .site-in { flex-wrap: wrap; padding-top: 8px; gap: 6px 10px; }
+    .cta { margin-left: auto; }
+    nav.menu { order: 3; width: 100%; margin-left: 0; overflow-x: auto; scrollbar-width: none; }
+    nav.menu a { height: 44px; white-space: nowrap; padding: 0 12px; flex: none; }
+    .foot-cols { grid-template-columns: 1fr 1fr; }
+    .foot-brand { grid-column: 1 / -1; }
+  }
+
+  @media (max-width: 640px) {
+    .chat { border-left: 0; border-right: 0; }
+    .thread { padding: 4px 10px 20px; }
+    .preview { min-width: 0; width: 100%; }
+  }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .typing i { animation: none; opacity: .7; } }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="site-in">
+    <a class="site-brand" href="#top"><span class="avatar" aria-hidden="true">W</span>Where Was Morgan?</a>
+    <nav class="menu" aria-label="Main">
+      <a href="#top">Home</a>
+      <a href="#status">Case status</a>
+      <a href="#coverage">Trial coverage</a>
+      <a href="#podcast">Podcast</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a class="cta" href="https://podcasts.apple.com/ie/podcast/where-was-morgan/id1749517343" rel="noopener">Listen</a>
+  </div>
+</header>
+
+<div class="chat">
+  <main class="thread" id="top">
+
+    <section class="intro">
+      <div class="avatar" aria-hidden="true">W</div>
+      <h1>Where Was Morgan?</h1>
+      <p>The Morgan Bauer podcast and case update</p>
+    </section>
+
+    <!-- Update this date each time the page changes -->
+    <p class="stamp">November 10, 2026</p>
+
+    <div class="group">
+      <span class="avatar" aria-hidden="true">W</span>
+      <div class="col">
+        <div class="msg big">Morgan Bauer left Aberdeen, South Dakota for Georgia on February 12, 2016.</div>
+        <div class="msg big">She was 19.</div>
+        <div class="msg big">She disappeared on February 26.</div>
+        <div class="msg big bold">Both people charged in her case have been convicted.</div>
+      </div>
+    </div>
+
+    <nav class="chips" aria-label="Jump to">
+      <a class="chip solid" href="#status">Where the case stands</a>
+      <a class="chip" href="#coverage">Trial coverage</a>
+      <a class="chip" href="#podcast">Listen to the podcast</a>
+    </nav>
+
+    <h2 class="section-title" id="status">Where the case stands</h2>
+    <div class="group">
+      <span class="avatar" aria-hidden="true">W</span>
+      <div class="col">
+        <div class="msg">Two people were charged in Morgan&rsquo;s death.</div>
+        <div class="msg">One pleaded guilty before trial and is serving life without parole.</div>
+        <div class="msg">The other was tried in Newton County, Georgia in August 2026. On August 31, the jury returned guilty verdicts on all five counts.</div>
+        <div class="msg">Life without parole, handed down on September 1, 2026.</div>
+        <div class="msg">Both are serving their sentences.</div>
+      </div>
+    </div>
+    <p class="system">Based on public court records and the trial coverage below. Last updated November 10, 2026. This summary may change as the case moves forward.</p>
+
+    <h2 class="section-title" id="coverage">Trial coverage</h2>
+    <div class="group">
+      <span class="avatar" aria-hidden="true">W</span>
+      <div class="col">
+        <div class="msg">Coverage of the trial from Court TV and Justice Is A Process. The coverage belongs to its creators, and these links go to their pages.</div>
+        <a class="preview" href="https://www.courttv.com/?s=morgan+bauer" rel="noopener"><b>Court TV</b><small>courttv.com &middot; Coverage of the case</small></a>
+        <a class="preview" href="https://www.youtube.com/playlist?list=PLC-t0Jykgm4U" rel="noopener"><b>Justice Is A Process</b><small>youtube.com &middot; Key moments and testimony</small></a>
+      </div>
+    </div>
+
+    <h2 class="section-title" id="podcast">The podcast</h2>
+    <div class="group">
+      <span class="avatar" aria-hidden="true">W</span>
+      <div class="col">
+        <div class="msg">The search for Morgan happened in Facebook Messenger: 6,553 messages across dozens of conversations. The podcast follows it as it happened.</div>
+        <div class="msg">Three episodes are out now.</div>
+      </div>
+    </div>
+
+    <div class="group">
+      <span class="avatar" aria-hidden="true">W</span>
+      <div class="col">
+        <a class="voice" href="https://podcasts.apple.com/ie/podcast/where-was-morgan/id1749517343" rel="noopener" aria-label="Listen to episode 1">
+          <span class="play" aria-hidden="true"></span>
+          <span class="vtext">
+            <b>&ldquo;Wish you could see how beautiful it is here&rdquo;</b>
+            <span class="bars" aria-hidden="true"><i style="--h:35%"></i><i style="--h:60%"></i><i style="--h:45%"></i><i style="--h:80%"></i><i style="--h:55%"></i><i style="--h:30%"></i><i style="--h:70%"></i><i style="--h:90%"></i><i style="--h:50%"></i><i style="--h:40%"></i><i style="--h:65%"></i><i style="--h:85%"></i><i style="--h:45%"></i><i style="--h:35%"></i><i style="--h:60%"></i><i style="--h:75%"></i><i style="--h:40%"></i><i style="--h:55%"></i><i style="--h:30%"></i><i style="--h:45%"></i></span>
+            <span class="vdesc">Morgan&rsquo;s story: Aberdeen, her best friend Taryn, the move to Georgia, and the couple she found on Craigslist.</span>
+          </span>
+        </a>
+        <a class="voice" href="https://podcasts.apple.com/ie/podcast/where-was-morgan/id1749517343" rel="noopener" aria-label="Listen to episode 2">
+          <span class="play" aria-hidden="true"></span>
+          <span class="vtext">
+            <b>&ldquo;Why would you think for all these years she would be doing her own thing?&rdquo;</b>
+            <span class="bars" aria-hidden="true"><i style="--h:35%"></i><i style="--h:60%"></i><i style="--h:45%"></i><i style="--h:80%"></i><i style="--h:55%"></i><i style="--h:30%"></i><i style="--h:70%"></i><i style="--h:90%"></i><i style="--h:50%"></i><i style="--h:40%"></i><i style="--h:65%"></i><i style="--h:85%"></i><i style="--h:45%"></i><i style="--h:35%"></i><i style="--h:60%"></i><i style="--h:75%"></i><i style="--h:40%"></i><i style="--h:55%"></i><i style="--h:30%"></i><i style="--h:45%"></i></span>
+            <span class="vdesc">A Facebook conversation, a story that had been rehearsed, and the long assumption that Morgan had run away.</span>
+          </span>
+        </a>
+        <a class="voice" href="https://podcasts.apple.com/ie/podcast/where-was-morgan/id1749517343" rel="noopener" aria-label="Listen to episode 3">
+          <span class="play" aria-hidden="true"></span>
+          <span class="vtext">
+            <b>&ldquo;Sasha has been calling me&rdquo;</b>
+            <span class="bars" aria-hidden="true"><i style="--h:35%"></i><i style="--h:60%"></i><i style="--h:45%"></i><i style="--h:80%"></i><i style="--h:55%"></i><i style="--h:30%"></i><i style="--h:70%"></i><i style="--h:90%"></i><i style="--h:50%"></i><i style="--h:40%"></i><i style="--h:65%"></i><i style="--h:85%"></i><i style="--h:45%"></i><i style="--h:35%"></i><i style="--h:60%"></i><i style="--h:75%"></i><i style="--h:40%"></i><i style="--h:55%"></i><i style="--h:30%"></i><i style="--h:45%"></i></span>
+            <span class="vdesc">Morgan&rsquo;s stage name, a Facebook account called Sasha Akins, and the question of who was behind it.</span>
+          </span>
+        </a>
+      </div>
+    </div>
+
+    <nav class="chips" aria-label="Where to listen">
+      <a class="chip solid" href="https://podcasts.apple.com/ie/podcast/where-was-morgan/id1749517343" rel="noopener">Apple Podcasts</a>
+      <a class="chip" href="https://open.spotify.com/show/4AUhRyNwRygzVNcFYw5JCp" rel="noopener">Spotify</a>
+    </nav>
+
+    <div class="group">
+      <span class="avatar" aria-hidden="true">W</span>
+      <div class="col">
+        <div class="msg">More episodes are coming soon.</div>
+        <div class="msg typing" aria-hidden="true"><i></i><i></i><i></i></div>
+      </div>
+    </div>
+
+    <h2 class="section-title" id="contact">Contact</h2>
+    <div class="group">
+      <span class="avatar" aria-hidden="true">W</span>
+      <div class="col">
+        <div class="msg">Press and producer inquiries:</div>
+        <a class="preview" href="mailto:contact@wherewasmorgan.com"><b>contact@wherewasmorgan.com</b><small>Email</small></a>
+      </div>
+    </div>
+
+    <div class="group">
+      <span class="avatar" aria-hidden="true">W</span>
+      <div class="col">
+        <div class="msg bold">Where Was Morgan? Now streaming. Link in bio.</div>
+      </div>
+    </div>
+
+  </main>
+
+  <div class="composer" aria-hidden="true">
+      <svg viewBox="0 0 24 24"><path d="M12 15a3 3 0 0 0 3-3V6a3 3 0 0 0-6 0v6a3 3 0 0 0 3 3zm5-3a1 1 0 1 1 2 0 7 7 0 0 1-6 6.92V21h-2v-2.08A7 7 0 0 1 5 12a1 1 0 1 1 2 0 5 5 0 0 0 10 0z"/></svg>
+      <svg viewBox="0 0 24 24"><path d="M5 3h14a3 3 0 0 1 3 3v12a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3V6a3 3 0 0 1 3-3zm0 2a1 1 0 0 0-1 1v9.6l4-4.2 3 3 4-5 5 6.2V6a1 1 0 0 0-1-1zm10 3.5a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3z"/></svg>
+      <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-10 10c0 5.5 4.5 10 10 10h1c1 0 2-.4 2.7-1.1l5.2-5.2c.7-.7 1.1-1.7 1.1-2.7v-1A10 10 0 0 0 12 2zm-3.5 7.5a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zm7 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zM8 15h8a4 4 0 0 1-8 0z"/></svg>
+      <span class="gif">GIF</span>
+      <span class="field"><span>Aa</span><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm-3.5 7.5a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zm7 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zM7 14h10a5 5 0 0 1-10 0z"/></svg></span>
+      <svg viewBox="0 0 24 24"><path d="M2 21h4V9H2v12zm20-11a2 2 0 0 0-2-2h-6.3l.9-4.4v-.3a1.5 1.5 0 0 0-.4-1L13.2 1 7.6 6.6A2 2 0 0 0 7 8v11a2 2 0 0 0 2 2h9a2 2 0 0 0 1.8-1.2l3-7a2 2 0 0 0 .2-.8v-2z"/></svg>
+    </div>
+</div>
+
+<footer class="site">
+  <div class="foot-in">
+    <div class="foot-cols">
+      <div class="foot-brand">
+        <span class="avatar" aria-hidden="true">W</span>
+        <div>
+          <strong>Where Was Morgan?</strong>
+          <p>The Morgan Bauer podcast and case update.</p>
+        </div>
+      </div>
+      <div>
+        <h2>Explore</h2>
+        <ul>
+          <li><a href="#top">Home</a></li>
+          <li><a href="#status">Case status</a></li>
+          <li><a href="#coverage">Trial coverage</a></li>
+          <li><a href="#podcast">Podcast</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Listen</h2>
+        <ul>
+          <li><a href="https://podcasts.apple.com/ie/podcast/where-was-morgan/id1749517343" rel="noopener">Apple Podcasts</a></li>
+          <li><a href="https://open.spotify.com/show/4AUhRyNwRygzVNcFYw5JCp" rel="noopener">Spotify</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <p>&copy; 2026 Colbridges Entertainment, LLC</p>
+      <p><a href="privacy.html">Privacy Policy</a> &nbsp;&nbsp; <a href="terms.html">Terms of Use</a></p>
+      <p class="legal">Trial coverage belongs to its creators. Case information is based on public court records and may change.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Highlights the menu tab for the section on screen. The page works without it.
+  (function () {
+    var links = [].slice.call(document.querySelectorAll("nav.menu a"));
+    var ids = links.map(function (a) { return a.getAttribute("href").slice(1); });
+    function update() {
+      var y = window.scrollY + 140, current = ids[0];
+      ids.forEach(function (id) {
+        var el = document.getElementById(id);
+        if (el && el.getBoundingClientRect().top + window.scrollY <= y) current = id;
+      });
+      if (window.innerHeight + window.scrollY >= document.body.scrollHeight - 4) current = ids[ids.length - 1];
+      links.forEach(function (a) {
+        var on = a.getAttribute("href") === "#" + current;
+        a.classList.toggle("active", on);
+        if (on) a.setAttribute("aria-current", "true"); else a.removeAttribute("aria-current");
+      });
+    }
+    window.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update);
+    update();
+  })();
+</script>
+
+</body>
+</html>
